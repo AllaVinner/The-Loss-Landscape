@@ -2,12 +2,12 @@ from typing import List, Dict, Optional
 from plotly import graph_objects as go
 import pandas as pd
 
-def create_spiral_plot(spirals: List[pd.DataFrame], plot_radius:float, pad_factor:float=1.1, colors: Optional[List[str]] = None):
+def create_spiral_plot(spirals: List[pd.DataFrame], plot_radius:float, pad_factor:float=1.1, colors: Optional[List[str]] = None, fig = None):
     pad_factor= 1.1
     if colors is None:
         colors = [None]*len(spirals)
-        
-    fig = go.Figure()
+    if fig is None:
+        fig = go.Figure()
     for s_i, spiral in enumerate(spirals):
         fig.add_trace(
             go.Scatter(x = spiral.x, y=spiral.y,
