@@ -20,7 +20,7 @@ class Spiral():
     def __init__(self, 
                  initial_angle:float=0., 
                  angular_frequency:float=2*np.pi, 
-                 t_max:float=2*np.pi, 
+                 t_max:float=2., 
                  *args, **kwargs):
         self.initial_angle = initial_angle
         self.angular_frequency = angular_frequency
@@ -62,3 +62,5 @@ class Spiral():
                 x_guess = (min_guess + x_guess)/2
 
         return x_guess
+
+
