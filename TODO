@@ -1,0 +1,11 @@
+* Create Models
+  * Dense - L2 norm
+  * Dense with L2 normalization
+  * Dense with Dice score
+  * Dense with dropout
+  * Dense with residuel links
+  * Dense with latent augmentations
+ 
+ 
+ 
+ 
