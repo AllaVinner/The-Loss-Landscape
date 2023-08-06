@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Callable, Optional
 
 import numpy as np
 
@@ -20,17 +20,27 @@ class Spiral():
     def __init__(self, 
                  initial_angle:float=0., 
                  angular_frequency:float=2*np.pi, 
-                 t_max:float=2., 
+                 t_max:float=2.,
+                 spiral_thickness: Optional[float] = None, 
                  *args, **kwargs):
         self.initial_angle = initial_angle
         self.angular_frequency = angular_frequency
         self.t_max = t_max
         self.length = self.length_at_input(self.t_max)
         self.domain = [0, self.t_max]
+        self.thickness: Optional[float] = spiral_thickness
 
     def __call__(self, t, *args, **kwargs):
         x = t*np.cos(t*self.angular_frequency + self.initial_angle)
         y = t*np.sin(t*self.angular_frequency + self.initial_angle)
+        
+        if self.thickness:
+            gamma_shape_theta = self.thickness**2
+            gamma_shape_k = 1/self.thickness**2
+            r_factor = np.random.gamma(gamma_shape_k, gamma_shape_theta, (len(x),))
+            x = r_factor*x
+            y = r_factor*y
+            
         return np.stack([x,y], axis=-1)
 
     def sample_normalized(self, num_samples):
