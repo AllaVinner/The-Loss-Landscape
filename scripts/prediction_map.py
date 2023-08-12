@@ -22,7 +22,7 @@ def create_prediction_map(transform,
     Y, X = torch.meshgrid((y_axis, x_axis))
     points = torch.stack((X, Y))
     
-    Z = points.pow(2).sum(0)
+    Z = transform(torch.stack(X,Y))
 
     fig = go.Figure(
         data = go.Heatmap(
