@@ -7,6 +7,9 @@ def create_prediciton_map(transform,
                           box = None,
                           nx = 500,
                           ny = 500):
+    """
+    :param transform: Function from (m, 2) -> (m)
+    """
     if box is None:
         box = dict()
     if not 'x0' in box:
